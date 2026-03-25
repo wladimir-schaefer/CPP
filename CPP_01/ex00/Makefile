@@ -2,18 +2,23 @@ NAME = zombie
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 SRCS = main.cpp Zombie.cpp newZombie.cpp randomChump.cpp
-OBJS = $(SRCS:.cpp=.o)
+OBJ_DIR = objs
+OBJS = $(addprefix $(OBJ_DIR)/,$(SRCS:.cpp=.o))
 
 all: $(NAME)
 
-$(NAME): $(OBJS)
-	$(CXX) $(CXXFLAGS) -o $(NAME) $(OBJS)
+$(OBJ_DIR):
+	mkdir -p $(OBJ_DIR)
 
-%.o: %.cpp
+$(NAME): $(OBJS)
+	$(CXX) $(CXXFLAGS) -o $@ $(OBJS)
+	
+
+$(OBJ_DIR)/%.o: %.cpp | $(OBJ_DIR)
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 clean:
-	rm -f $(OBJS) $(NAME).dSYM
+	rm -rf $(OBJ_DIR)
 
 fclean: clean
 	rm -f $(NAME)

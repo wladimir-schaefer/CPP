@@ -5,14 +5,14 @@
 #include <string>
 
 class Zombie {
+
 	private:
 		std::string name;
-		void announce( void ){
-			std::cout << name << ": BraiiiiiiinnnzzzZ...\n";
-		}
+
 	public:
-		Zombie( void );
+		Zombie(std::string name);
 		~Zombie ( void );
+		void announce( void );
 };
 
 Zombie* newZombie( std::string name );
