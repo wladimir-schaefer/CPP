@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wschafer <wschafer@student.42berlin.d>     +#+  +:+       +#+        */
+/*   By: wschafer <wschafer@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/24 17:27:13 by wschafer          #+#    #+#             */
-/*   Updated: 2026/03/25 22:49:46 by wschafer         ###   ########.fr       */
+/*   Updated: 2026/03/31 10:48:03 by wschafer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int	main(){
 	Zombie* horde = zombieHorde(N, "Zombie");
 
 	for (int i = 0; i < N; i++) {
+		std::cout << i << ": ";
 		horde[i].announce();
 	}
 
