@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   zombieHorde.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wschafer <wschafer@student.42berlin.d>     +#+  +:+       +#+        */
+/*   By: wschafer <wschafer@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/25 21:59:07 by wschafer          #+#    #+#             */
-/*   Updated: 2026/03/25 22:45:08 by wschafer         ###   ########.fr       */
+/*   Updated: 2026/03/31 16:36:13 by wschafer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

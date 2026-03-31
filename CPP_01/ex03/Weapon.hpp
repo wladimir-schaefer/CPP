@@ -7,15 +7,13 @@
 class Weapon {
 
 	private:
-		std::string name;
+		std::string type;
 
 	public:
-		Zombie(std::string name);
-		~Zombie ( void );
-		void announce( void );
+		Weapon(std::string name);
+		~Weapon ( void );
+		const std::string& getType();
+		void setType(std::string type); 
 };
-
-Zombie* newZombie( std::string name );
-void randomChump( std::string name );
 
 #endif
