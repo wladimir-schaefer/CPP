@@ -1,7 +1,7 @@
-NAME = violence
+NAME = sed_is_for_losers
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
-SRCS = main.cpp HumanA.cpp Weapon.cpp HumanB.cpp
+SRCS = main.cpp
 OBJ_DIR = objs
 OBJS = $(addprefix $(OBJ_DIR)/,$(SRCS:.cpp=.o))
 
