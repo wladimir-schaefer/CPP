@@ -1,7 +1,7 @@
-NAME = megaphone
+NAME = harl
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
-SRCS = megaphone.cpp
+SRCS = main.cpp Harl.cpp
 OBJ_DIR = objs
 OBJS = $(addprefix $(OBJ_DIR)/,$(SRCS:.cpp=.o))
 
@@ -12,6 +12,7 @@ $(OBJ_DIR):
 
 $(NAME): $(OBJS)
 	$(CXX) $(CXXFLAGS) -o $@ $(OBJS)
+	
 
 $(OBJ_DIR)/%.o: %.cpp | $(OBJ_DIR)
 	$(CXX) $(CXXFLAGS) -c $< -o $@

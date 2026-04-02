@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   megaphone.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wschafer <wschafer@student.42berlin.d>     +#+  +:+       +#+        */
+/*   By: wschafer <wschafer@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/16 11:12:41 by wschafer          #+#    #+#             */
-/*   Updated: 2026/03/16 16:02:12 by wschafer         ###   ########.fr       */
+/*   Updated: 2026/04/02 12:43:57 by wschafer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 #include <string>
 
 int main(int argc, char **argv) {
-	int i = 1;
 
 	if (argc == 1)
 	{
