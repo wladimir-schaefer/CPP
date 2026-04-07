@@ -11,10 +11,14 @@ class PhoneBook {
 		Contact contact[8];
 		int num_of_contacts;
 		int oldest;
-	public:
-		void add(  );
-		void search();
 
+	public:
+		PhoneBook();
+		void add();
+		void search();
+		void displayAllContacts();
+		void displayContact(int index);
+		std::string format(const std::string &str);
 };
 
 #endif
