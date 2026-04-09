@@ -82,7 +82,7 @@ void PhoneBook::add(){
 	else
 	{
 		index_to_add = oldest;
-		oldest = (oldest + 1) % 8;
+		oldest = (oldest + 1) % 7;
 	}
 
 	contact[index_to_add].setContact(first_name, last_name, nickname, phone_number, darkest_secret);
