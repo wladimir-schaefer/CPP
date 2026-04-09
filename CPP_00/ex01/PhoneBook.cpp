@@ -20,6 +20,8 @@ void PhoneBook::add(){
 	{
 		std::cout << "Enter the first name\n";
 		std::getline(std::cin, first_name);
+		if (!std::cin)
+			exit(0);
 		if (first_name.empty())
 			std::cout << "The field can't be empty\n";
 		else
@@ -29,6 +31,8 @@ void PhoneBook::add(){
 	{
 		std::cout << "Enter the last name\n";
 		std::getline(std::cin, last_name);
+		if (!std::cin)
+			exit(0);
 		if (last_name.empty())
 			std::cout << "The field can't be empty\n";
 		else
@@ -38,6 +42,8 @@ void PhoneBook::add(){
 	{
 		std::cout << "Enter the nickname\n";
 		std::getline(std::cin, nickname);
+		if (!std::cin)
+			exit(0);
 		if (nickname.empty())
 			std::cout << "The field can't be empty\n";
 		else
@@ -47,6 +53,8 @@ void PhoneBook::add(){
 	{
 		std::cout << "Enter the phone number\n";
 		std::getline(std::cin, phone_number);
+		if (!std::cin)
+			exit(0);
 		if (phone_number.empty())
 			std::cout << "The field can't be empty\n";
 		else
@@ -56,6 +64,8 @@ void PhoneBook::add(){
 	{
 		std::cout << "Enter the darkest secret\n";
 		std::getline(std::cin, darkest_secret);
+		if (!std::cin)
+			exit(0);
 		if (darkest_secret.empty())
 			std::cout << "The field can't be empty\n";
 		else
@@ -94,6 +104,8 @@ void PhoneBook::search(){
 	{
 		std::cout << "Enter the index of the contact\n";
 		std::getline(std::cin, input);
+		if (!std::cin)
+			exit(0);
 		if (input.empty())
 		{
 			std::cout << "The field can't be empty\n";

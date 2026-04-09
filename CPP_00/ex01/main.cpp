@@ -1,4 +1,5 @@
 #include "PhoneBook.hpp"
+#include <cstdlib>
 
 int main()
 {
@@ -9,6 +10,8 @@ int main()
 	{
 		std::cout << "Enter the command ADD, SEARCH or EXIT\n";
 		std::getline(std::cin, command);
+		if (!std::cin)
+			exit(0);
 		if (command == "ADD" || command == "add")
 		{
 			phonebook.add();
