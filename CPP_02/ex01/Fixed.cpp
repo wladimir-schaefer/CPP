@@ -3,8 +3,18 @@
 const int Fixed::_fractional_bits = 8;
 
 Fixed::Fixed(){
-	_value = 0;
 	std::cout << "Default constructor called" << std::endl;
+	_value = 0;
+}
+
+Fixed::Fixed(const int int_value){
+	std::cout << "Int constructor called" << std::endl;
+	_value = int_value << _fractional_bits;
+}
+
+Fixed::Fixed(const float float_value){
+	std::cout << "Float constructor called" << std::endl;
+	_value = roundf(float_value * (1 << _fractional_bits));
 }
 
 Fixed::Fixed (const Fixed &other) {
