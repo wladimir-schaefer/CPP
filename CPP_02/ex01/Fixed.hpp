@@ -12,8 +12,8 @@ private:
 
 public:
 	Fixed();
-	Fixed(const int num);
-	Fixed(const float num);
+	Fixed(int const num);
+	Fixed(float const num);
 	Fixed (const Fixed &other);
 	Fixed &operator=(const Fixed &other);
 	~Fixed();
@@ -23,9 +23,6 @@ public:
 	int toInt( void ) const;
 };
 
-std::ostream &operator<<(std::ostream &out, const Fixed &obj) {
-	out << obj.toFloat();
-	return out;
-}
+std::ostream &operator<<(std::ostream &out, const Fixed &obj);
 
 #endif
