@@ -2,22 +2,17 @@
 
 const int Fixed::_fractional_bits = 8;
 
-Fixed::Fixed():_value(0){
-	// std::cout << "Default constructor called" << std::endl;
-}
+Fixed::Fixed():_value(0){}
 
 Fixed::Fixed(int const int_value){
-	// std::cout << "Int constructor called" << std::endl;
 	_value = int_value << _fractional_bits;
 }
 
 Fixed::Fixed(float const float_value){
-	// std::cout << "Float constructor called" << std::endl;
 	_value = roundf(float_value * (1 << _fractional_bits));
 }
 
 Fixed::Fixed (const Fixed &other) {
-	// std::cout << "Copy constructor called" << std::endl;
 	_value = other.getRawBits();
 }
 
@@ -32,9 +27,7 @@ std::ostream &operator<<(std::ostream &out, const Fixed &obj) {
 	return out;
 }
 
-Fixed::~Fixed(){
-	// std::cout << "Destructor called" << std::endl;
-}
+Fixed::~Fixed(){}
 
 int Fixed::getRawBits( void ) const {
 	return _value;
