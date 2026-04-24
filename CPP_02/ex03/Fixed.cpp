@@ -2,7 +2,8 @@
 
 const int Fixed::_fractional_bits = 8;
 
-Fixed::Fixed():_value(0){}
+Fixed::Fixed():_value(0){
+}
 
 Fixed::Fixed(int const int_value){
 	_value = int_value << _fractional_bits;
@@ -27,7 +28,8 @@ std::ostream &operator<<(std::ostream &out, const Fixed &obj) {
 	return out;
 }
 
-Fixed::~Fixed(){}
+Fixed::~Fixed(){
+}
 
 int Fixed::getRawBits( void ) const {
 	return _value;
