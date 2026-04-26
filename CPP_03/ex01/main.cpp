@@ -6,7 +6,6 @@ int main( void ) {
 	ClapTrap a("Clap_a");
 	ClapTrap b(a);
 	a.attack("target1");
-	// b.attack("target2");
 	std::cout << "Energy points ClapTrap a = " << a.getEnergyPoints() << std::endl;
 	std::cout << "Energy points ClapTrap b = " << b.getEnergyPoints() << std::endl;
 	a.takeDamage(5);
@@ -24,7 +23,6 @@ int main( void ) {
 	ScavTrap d("Scav_d");
 	ScavTrap e(d);
 	d.attack("enemy1");
-	e.attack("enemy2");
 	std::cout << "Energy points ScavTrap d = " << d.getEnergyPoints() << std::endl;
 	std::cout << "Energy points ScavTrap e = " << e.getEnergyPoints() << std::endl;
 	d.takeDamage(5);
@@ -37,6 +35,7 @@ int main( void ) {
 	f.attack("enemy3");
 	std::cout << "Energy points ScavTrap f = " << f.getEnergyPoints() << std::endl;
 	std::cout << "Hit points ScavTrap f = " << f.getHitPoints() << std::endl;
+	f.guardGate();
 
 	return 0;
 }
