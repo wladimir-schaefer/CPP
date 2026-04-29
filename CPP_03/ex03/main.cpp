@@ -1,28 +1,21 @@
-#include "ClapTrap.hpp"
-#include "ScavTrap.hpp"
-#include "FragTrap.hpp"
-
+#include "DiamondTrap.hpp"
+#include <iostream>
 
 int main() {
-	std::cout << "FragTrap Construction" << std::endl;
-	{
-		FragTrap a("Frag_A");
-	}
+	std::cout << "=== Construction ===" << std::endl;
+	DiamondTrap a("Diamond_A");
 
-	std::cout << "\nCopy Constructor" << std::endl;
-	FragTrap b("Frag_B");
-	FragTrap c(b);
+	std::cout << "\n=== Copy Constructor ===" << std::endl;
+	DiamondTrap b(a);
 
-	b.attack("enemy1");
-	c.attack("enemy2");
+	std::cout << "\n=== Assignment ===" << std::endl;
+	DiamondTrap c("Diamond_C");
+	c = a;
 
-	std::cout << "\nAssignment Operator" << std::endl;
-	FragTrap d("Frag_D");
-	d = b;
-	d.attack("enemy3");
+	std::cout << "\n=== Actions ===" << std::endl;
+	a.attack("enemy1");
+	a.whoAmI();
 
-	std::cout << "\nSpecial Ability" << std::endl;
-	d.highFivesGuys();
-	std::cout << std::endl;
+	std::cout << "\n=== End of scope ===" << std::endl;
 	return 0;
-}
+}	
