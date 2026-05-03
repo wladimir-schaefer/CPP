@@ -4,8 +4,7 @@ Dog::Dog() {
 	type = "Dog";
 }
 
-Dog::Dog(const Dog &other) {
-	this->type = other.type;
+Dog::Dog(const Dog &other) : Animal(other) {
 }
 
 Dog &Dog::operator=(const Dog &other){
@@ -14,7 +13,9 @@ Dog &Dog::operator=(const Dog &other){
 	return *this;
 }
 
-Dog::~Dog(){}
+Dog::~Dog(){
+	std::cout << "Dog destructor called" << std::endl;
+}
 
 void Dog::makeSound() const {
 	std::cout << "Dog says: Bark" << std::endl;

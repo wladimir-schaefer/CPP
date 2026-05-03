@@ -10,7 +10,9 @@ Animal &Animal::operator=(const Animal &other){
 	return *this;
 }
 
-Animal::~Animal(){}
+Animal::~Animal(){
+	std::cout << "Animal destructor called" << std::endl;
+}
 
 std::string Animal::getType() const {
 	return type;

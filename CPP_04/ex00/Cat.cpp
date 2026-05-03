@@ -4,8 +4,7 @@ Cat::Cat() {
 	type = "Cat";
 }
 
-Cat::Cat(const Cat &other) {
-	this->type = other.type;
+Cat::Cat(const Cat &other) : Animal(other) {
 }
 
 Cat &Cat::operator=(const Cat &other){
@@ -14,7 +13,9 @@ Cat &Cat::operator=(const Cat &other){
 	return *this;
 }
 
-Cat::~Cat(){}
+Cat::~Cat(){
+	std::cout << "Cat destructor called" << std::endl;
+}
 
 void Cat::makeSound() const {
 	std::cout << "Cat says: Mew" << std::endl;
