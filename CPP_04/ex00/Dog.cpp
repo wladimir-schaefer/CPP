@@ -1,8 +1,12 @@
 #include "Dog.hpp"
 
-Dog::Dog(): type("Dog") {}
+Dog::Dog() {
+	type = "Dog";
+}
 
-Dog::Dog(const Dog &other): type(other.type) {}
+Dog::Dog(const Dog &other) {
+	this->type = other.type;
+}
 
 Dog &Dog::operator=(const Dog &other){
 	if (this != &other)
@@ -12,6 +16,6 @@ Dog &Dog::operator=(const Dog &other){
 
 Dog::~Dog(){}
 
-void Dog::makeSound(){
+void Dog::makeSound() const {
 	std::cout << "Dog says: Bark" << std::endl;
 }
