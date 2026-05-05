@@ -6,13 +6,13 @@ Cat::Cat() {
 	std::cout << "Cat constructor called" << std::endl;
 }
 
-Cat::Cat(const Cat &other) : Animal(other) {
+Cat::Cat(const Cat &other) : AAnimal(other) {
 	brain = new Brain(*other.brain);
 }
 
 Cat &Cat::operator=(const Cat &other){
 	if (this != &other) {
-		Animal::operator=(other);
+		AAnimal::operator=(other);
 		delete this->brain;
 		this->brain = new Brain(*other.brain);
 		this->type = other.type;

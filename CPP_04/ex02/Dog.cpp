@@ -6,13 +6,13 @@ Dog::Dog() {
 	std::cout << "Dog constructor called" << std::endl;
 }
 
-Dog::Dog(const Dog &other) : Animal(other) {
+Dog::Dog(const Dog &other) : AAnimal(other) {
 	brain = new Brain(*other.brain);
 }
 
 Dog &Dog::operator=(const Dog &other){
 	if (this != &other) {
-		Animal::operator=(other);
+		AAnimal::operator=(other);
 		delete this->brain;
 		this->brain = new Brain(*other.brain);
 		this->type = other.type;
