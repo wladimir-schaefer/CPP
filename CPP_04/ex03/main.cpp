@@ -1,6 +1,7 @@
-#include "AAnimal.hpp"
-#include "Cat.hpp"
-#include "Dog.hpp"
+#include "IMateriaSource.hpp"
+#include "ICharacter.hpp"
+#include "Ice.hpp"
+#include "Cure.hpp"
 
 int main()
 {
