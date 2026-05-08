@@ -7,17 +7,14 @@
 
 class Cure : public AMateria
 {
-protected:
-	std::string const type;
-
 public:
-	Cure(std::string const & type);
+	Cure();
 	Cure(const Cure &other);
 	Cure &operator=(const Cure &other);
 	~Cure();
 
-	Cure clone();
-	void use(ICharacter&);
+	AMateria* clone() const;
+	void use(ICharacter& target);
 };
 
 #endif

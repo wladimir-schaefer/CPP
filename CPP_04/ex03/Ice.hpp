@@ -7,17 +7,14 @@
 
 class Ice : public AMateria
 {
-protected:
-	std::string const type;
-
 public:
-	Ice(std::string const & type);
+	Ice();
 	Ice(const Ice &other);
 	Ice &operator=(const Ice &other);
 	~Ice();
 
-	Ice *clone() const;
-	void use(ICharacter&);
+	AMateria *clone() const;
+	void use(ICharacter& target);
 };
 
 #endif
