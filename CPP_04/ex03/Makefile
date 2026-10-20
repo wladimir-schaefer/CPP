@@ -1,7 +1,7 @@
-NAME = animal
+NAME = game
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
-SRCS = main.cpp AAnimal.cpp Cat.cpp Dog.cpp Brain.cpp
+SRCS = main.cpp AMateria.cpp Character.cpp Cure.cpp Ice.cpp MateriaSource.cpp
 OBJ_DIR = objs
 OBJS = $(addprefix $(OBJ_DIR)/,$(SRCS:.cpp=.o))
 
