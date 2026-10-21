@@ -1,4 +1,5 @@
 #include "Cure.hpp"
+#include "ICharacter.hpp"
 
 Cure::Cure() : AMateria("cure") {}
 
@@ -23,6 +24,6 @@ void Cure::use(ICharacter& target)
 {
 	std::cout << "* heals "
 			<< target.getName()
-			<< "`s wouds *"
+			<< "'s wounds *"
 			<< std::endl;
 }
