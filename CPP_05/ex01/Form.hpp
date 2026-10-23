@@ -13,17 +13,17 @@ private:
 	bool _is_signed;
 	const int _grade_to_sign;
 	const int _grade_to_execute;
+	Form();
 	Form& operator=(const Form&);
 public:
-	Form();
-	Form(std::string name, bool is_signed, int grade_to_sign, int grade_to_execute);
+	Form(std::string name, int grade_to_sign, int grade_to_execute);
 	Form(const Form&);
 	~Form();
 
 	const std::string& getName() const;
-	int getSigned() const;
-	const int getGradeToSign() const;
-	const int getGradeToExecute () const;
+	bool getSigned() const;
+	int getGradeToSign() const;
+	int getGradeToExecute () const;
 
 	void beSigned(const Bureaucrat&);
 
