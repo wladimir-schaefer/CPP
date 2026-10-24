@@ -7,3 +7,7 @@ PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm& oth
 	: AForm(other), _target(other._target){}
 
 PresidentialPardonForm::~PresidentialPardonForm(){}
+
+void PresidentialPardonForm::executeAction() const {
+	std::cout << _target << " has been pardoned by Zaphod Beeblebrox." << std::endl;
+}

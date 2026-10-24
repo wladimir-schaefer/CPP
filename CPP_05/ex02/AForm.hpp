@@ -15,6 +15,7 @@ private:
 	const int _grade_to_execute;
 	AForm();
 	AForm& operator=(const AForm&);
+	void virtual executeAction() const = 0;
 public:
 	AForm(std::string name, int grade_to_sign, int grade_to_execute);
 	AForm(const AForm&);
@@ -31,12 +32,18 @@ public:
 		public:
 			const char* what() const throw();
 	};
+
 	class GradeTooLowException : public std::exception {
 		public:
 			const char* what() const throw();
 	};
+
+	class FormNotSignedException : public std::exception {
+		public:
+			const char* what() const throw();
+	};
 	
-	virtual void execute(Bureaucrat const & executor) const = 0;
+	void execute(Bureaucrat const & executor) const;
 
 };
 
