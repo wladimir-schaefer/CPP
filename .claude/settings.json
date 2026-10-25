@@ -1,7 +1,9 @@
 {
   "permissions": {
     "allow": [
-      "Bash(c++ -Wall -Wextra -Werror -std=c++98 -fsyntax-only main.cpp Bureaucrat.cpp)"
+      "Bash(c++ -Wall -Wextra -Werror -std=c++98 -fsyntax-only main.cpp Bureaucrat.cpp)",
+      "Bash(./bureaucrat)",
+      "Bash(c++ -Wall -Wextra -Werror -std=c++98 -fsyntax-only Intern.cpp)"
     ]
   }
 }

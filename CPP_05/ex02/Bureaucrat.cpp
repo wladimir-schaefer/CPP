@@ -1,5 +1,5 @@
 #include "Bureaucrat.hpp"
-#include "Form.hpp"
+#include "AForm.hpp"
 
 Bureaucrat::Bureaucrat(): _name("default"), _grade(150) {}
 
@@ -35,7 +35,7 @@ void Bureaucrat::decrementGrade(){
 	++_grade;
 }
 
-void Bureaucrat::signForm(Form& f) {
+void Bureaucrat::signForm(AForm& f) {
 	try {
 		f.beSigned(*this);
 		std::cout << _name << " signed " << f.getName() << std::endl;
@@ -45,6 +45,15 @@ void Bureaucrat::signForm(Form& f) {
 	}
 }
 
+void Bureaucrat::executeForm(AForm const & form) const{
+	try {
+		form.execute(*this);
+		std::cout << _name << " executed " << form.getName() << std::endl;
+	} catch (std::exception& e) {
+		std::cout << _name << " couldn't execute " << form.getName()
+				<< " because " << e.what() << "." << std::endl;
+	}
+}
 
 const char* Bureaucrat::GradeTooHighException::what() const throw() {
 	return "grade is too high";

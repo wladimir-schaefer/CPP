@@ -1,49 +1,81 @@
+#include <cstdlib>
+#include <ctime>
+
 #include "Bureaucrat.hpp"
-#include "Form.hpp"
+#include "ShrubberyCreationForm.hpp"
+#include "RobotomyRequestForm.hpp"
+#include "PresidentialPardonForm.hpp"
 
 int main() {
-	// grade high enough: signing succeeds
-	{
-		Bureaucrat alice("Alice", 2);
-		std::cout << alice << std::endl;
-		Form contract("Contract", 50, 25);
-		std::cout << contract << std::endl;
-		alice.signForm(contract);
-		std::cout << contract;
-	}
+	std::srand(std::time(NULL));
 
-	std::cout << std::endl << std::endl;
-	
-	// grade too low: signing fails, form stays unsigned
+	// grade high enough: every form gets signed and executed
 	{
-		Bureaucrat bob("Bob", 100);
-		std::cout << bob << std::endl;
-		Form permit("Permit", 50, 25);
-		std::cout << permit << std::endl;
-		bob.signForm(permit);
-		std::cout << permit;
+		Bureaucrat boss("Boss", 1);
+		std::cout << boss << std::endl;
+		ShrubberyCreationForm shrub("home");
+		RobotomyRequestForm robot("Bender");
+		PresidentialPardonForm pardon("Arthur Dent");
+		std::cout << shrub << std::endl << robot << std::endl << pardon << std::endl;
+		boss.signForm(shrub);
+		boss.executeForm(shrub);
+		boss.signForm(robot);
+		boss.executeForm(robot);
+		boss.signForm(pardon);
+		boss.executeForm(pardon);
 	}
 
 	std::cout << std::endl << std::endl;
 
-	// grade exactly equal to the required one: signing succeeds
+	// form not signed: execution fails
 	{
-		Bureaucrat carol("Carol", 50);
-		std::cout << carol << std::endl;
-		Form lease("Lease", 50, 25);
-		std::cout << lease << std::endl;
-		carol.signForm(lease);
-		std::cout << lease;
+		Bureaucrat boss("Boss", 1);
+		PresidentialPardonForm pardon("Ford Prefect");
+		boss.executeForm(pardon);
 	}
 
 	std::cout << std::endl << std::endl;
 
-	// attempt to sign bad form
-	try {
-	Form bad("Bad", 0, 25);
+	// grade high enough to sign but too low to execute
+	{
+		Bureaucrat dave("Dave", 50);
+		std::cout << dave << std::endl;
+		RobotomyRequestForm robot("Marvin");
+		dave.signForm(robot);
+		dave.executeForm(robot);
 	}
-	catch (std::exception& e) {
-		std::cout << e.what() << std::endl;
+
+	std::cout << std::endl << std::endl;
+
+	// grade too low to sign
+	{
+		Bureaucrat intern("Intern", 150);
+		std::cout << intern << std::endl;
+		ShrubberyCreationForm shrub("garden");
+		intern.signForm(shrub);
+		intern.executeForm(shrub);
+	}
+
+	std::cout << std::endl << std::endl;
+
+	// robotomy several times to see the 50% chance
+	{
+		Bureaucrat boss("Boss", 1);
+		RobotomyRequestForm robot("Zaphod");
+		boss.signForm(robot);
+		for (int i = 0; i < 5; ++i)
+			boss.executeForm(robot);
+	}
+
+	std::cout << std::endl << std::endl;
+
+	// forms used through an AForm pointer
+	{
+		Bureaucrat boss("Boss", 1);
+		AForm* form = new PresidentialPardonForm("Trillian");
+		boss.signForm(*form);
+		boss.executeForm(*form);
+		delete form;
 	}
 
 	return 0;
