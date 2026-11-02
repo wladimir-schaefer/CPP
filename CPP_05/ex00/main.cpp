@@ -3,11 +3,11 @@
 int main() {
 	try {
 		Bureaucrat ok("Alice", 2);
-		std::cout << ok;
+		std::cout << ok << std::endl;
 		ok.incrementGrade();
-		std::cout << ok;
+		std::cout << ok << std::endl;
 		ok.incrementGrade();
-		std::cout << ok;
+		std::cout << ok << std::endl;
 	}
 	catch (Bureaucrat::GradeTooHighException& e){
 		std::cerr << e.what() << std::endl;
