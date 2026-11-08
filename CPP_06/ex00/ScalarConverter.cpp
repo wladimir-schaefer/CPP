@@ -17,7 +17,7 @@ ScalarConverter::~ScalarConverter(){}
 
 enum e_type {CHAR, INT, FLOAT, DOUBLE, PSEUDO, INVALID};
 
-bool isPseudo(const std::string& str){
+static bool isPseudo(const std::string& str){
 	static const char* arr[] = {"-inff", "+inff", "nanf", "-inf", "+inf", "nan"};
 	const int count = sizeof(arr) / sizeof(arr[0]);
 	for (int i = 0; i < count; i++){
@@ -27,7 +27,7 @@ bool isPseudo(const std::string& str){
 	return false;
 }
 
-bool isChar(const std::string& str){
+static bool isChar(const std::string& str){
 	if (str.length() != 1)
 		return false;
 	unsigned char c = static_cast<unsigned char>(str[0]);
@@ -38,7 +38,7 @@ bool isChar(const std::string& str){
 	return true;
 }
 
-bool isInt(const std::string& str){
+static bool isInt(const std::string& str){
 	size_t i = 0;
 	if (str[i] == '+' || str[i] == '-')
 		i++;
@@ -51,7 +51,7 @@ bool isInt(const std::string& str){
 	return true;
 }
 
-bool isDouble(const std::string& str){
+static bool isDouble(const std::string& str){
 	size_t i = 0;
 	if (str[i] == '+' || str[i] == '-')
 		i++;
@@ -69,13 +69,13 @@ bool isDouble(const std::string& str){
 	return true;
 }
 
-bool isFloat(const std::string& str){
+static bool isFloat(const std::string& str){
 	if (str.length() < 2 || str[str.length() - 1] != 'f')
 		return false;
 	return isDouble(str.substr(0, str.length() - 1));
 }
 
-e_type detectType(const std::string& str){
+static e_type detectType(const std::string& str){
 	if (str.empty())
 		return INVALID;
 	if (isPseudo(str))
@@ -91,15 +91,21 @@ e_type detectType(const std::string& str){
 	return INVALID;
 }
 
-std::string formatNumber(double d){
-	std::ostringstream os;
-	if (d == std::floor(d))
-		os << std::fixed << std::setprecision(1);
-	os << d;
-	return os.str();
+// shortest fixed notation (at least one decimal) that reads back as the same value
+static std::string formatNumber(double d, bool asFloat){
+	std::string s;
+	for (int p = 1; p <= 400; p++){
+		std::ostringstream os;
+		os << std::fixed << std::setprecision(p) << d;
+		s = os.str();
+		double back = std::strtod(s.c_str(), NULL);
+		if (asFloat ? static_cast<float>(back) == static_cast<float>(d) : back == d)
+			break;
+	}
+	return s;
 }
 
-void printChar(double d){
+static void printChar(double d){
 	std::cout << "char: ";
 	if (d != d || d < 0 || d > 127)
 		std::cout << "impossible";
@@ -113,7 +119,7 @@ void printChar(double d){
 	std::cout << std::endl;
 }
 
-void printInt(double d){
+static void printInt(double d){
 	std::cout << "int: ";
 	if (d != d || d < INT_MIN || d > INT_MAX)
 		std::cout << "impossible";
@@ -122,7 +128,7 @@ void printInt(double d){
 	std::cout << std::endl;
 }
 
-void printFloat(double d){
+static void printFloat(double d){
 	std::cout << "float: ";
 	if (d != d)
 		std::cout << "nanf";
@@ -133,11 +139,11 @@ void printFloat(double d){
 	else if (d > FLT_MAX || d < -FLT_MAX)
 		std::cout << "impossible";
 	else
-		std::cout << formatNumber(static_cast<double>(static_cast<float>(d))) << "f";
+		std::cout << formatNumber(static_cast<double>(static_cast<float>(d)), true) << "f";
 	std::cout << std::endl;
 }
 
-void printDouble(double d){
+static void printDouble(double d, bool fromFloatValue = false){
 	std::cout << "double: ";
 	if (d != d)
 		std::cout << "nan";
@@ -146,11 +152,11 @@ void printDouble(double d){
 	else if (d == -std::numeric_limits<double>::infinity())
 		std::cout << "-inf";
 	else
-		std::cout << formatNumber(d);
+		std::cout << formatNumber(d, fromFloatValue);
 	std::cout << std::endl;
 }
 
-void fromChar(const std::string& str){
+static void fromChar(const std::string& str){
 	char c = str[0];
 	printChar(static_cast<double>(c));
 	printInt(static_cast<double>(c));
@@ -158,7 +164,7 @@ void fromChar(const std::string& str){
 	printDouble(static_cast<double>(c));
 }
 
-void fromDouble(const std::string& str){
+static void fromDouble(const std::string& str){
 	double d = std::strtod(str.c_str(), NULL);
 	printChar(d);
 	printInt(d);
@@ -166,7 +172,7 @@ void fromDouble(const std::string& str){
 	printDouble(d);
 }
 
-void fromInt(const std::string& str){
+static void fromInt(const std::string& str){
 	errno = 0;
 	long l = std::strtol(str.c_str(), NULL, 10);
 	if (errno == ERANGE || l < INT_MIN || l > INT_MAX){
@@ -180,7 +186,7 @@ void fromInt(const std::string& str){
 	printDouble(static_cast<double>(i));
 }
 
-void fromFloat(const std::string& str){
+static void fromFloat(const std::string& str){
 	double d = std::strtod(str.c_str(), NULL);
 	if (d > FLT_MAX || d < -FLT_MAX){
 		fromDouble(str.substr(0, str.length() - 1));
@@ -190,10 +196,10 @@ void fromFloat(const std::string& str){
 	printChar(static_cast<double>(f));
 	printInt(static_cast<double>(f));
 	printFloat(static_cast<double>(f));
-	printDouble(static_cast<double>(f));
+	printDouble(static_cast<double>(f), true);
 }
 
-void fromPseudo(const std::string& str){
+static void fromPseudo(const std::string& str){
 	double d;
 	if (str[0] == 'n')
 		d = std::numeric_limits<double>::quiet_NaN();

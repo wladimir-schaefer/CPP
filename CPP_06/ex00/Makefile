@@ -12,7 +12,7 @@ $(OBJ_DIR):
 
 $(NAME): $(OBJS)
 	$(CXX) $(CXXFLAGS) -o $@ $(OBJS)
-	
+
 
 $(OBJ_DIR)/%.o: %.cpp | $(OBJ_DIR)
 	$(CXX) $(CXXFLAGS) -c $< -o $@
