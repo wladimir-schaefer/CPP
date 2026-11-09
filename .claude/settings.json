@@ -4,7 +4,10 @@
       "Bash(c++ -Wall -Wextra -Werror -std=c++98 -fsyntax-only main.cpp Bureaucrat.cpp)",
       "Bash(./bureaucrat)",
       "Bash(c++ -Wall -Wextra -Werror -std=c++98 -fsyntax-only Intern.cpp)",
-      "Bash(git rm *)"
+      "Bash(git rm *)",
+      "Bash(make)",
+      "Bash(./serializer)",
+      "Bash(make fclean *)"
     ]
   }
 }
