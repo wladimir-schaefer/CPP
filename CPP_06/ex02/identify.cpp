@@ -22,7 +22,6 @@ Base *generate(void)
 	}
 }
 
-// Pointer version: dynamic_cast returns NULL on failure.
 void identify(Base *p)
 {
 	if (!p)
@@ -37,8 +36,6 @@ void identify(Base *p)
 		std::cout << "unknown" << std::endl;
 }
 
-// Reference version: dynamic_cast throws std::bad_cast on failure
-// (caught as std::exception, so <typeinfo> is not needed).
 void identify(Base &p)
 {
 	try
